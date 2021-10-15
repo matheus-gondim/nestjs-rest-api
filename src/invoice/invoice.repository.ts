@@ -1,3 +1,4 @@
+import { FindInvoicesWithPageableDto } from './dto/find-invoices-with-pageable.dto';
 import { InvoiceUploadDto } from './dto/invoice-upload.dto';
 import { Invoice } from '../db/entities/invoice.entity';
 import { EntityRepository, FindConditions, Repository } from 'typeorm';
@@ -22,6 +23,20 @@ export class InvoiceRepository extends Repository<Invoice> {
       return await this.save(invoice);
     } catch (error) {
       throw new InternalServerErrorException('Erro ao salvar o arquivo');
+    }
+  }
+
+  async findWithPageable(
+    dto: FindInvoicesWithPageableDto,
+  ): Promise<[Invoice[], number]> {
+    const { page } = dto;
+    const query = this.createQueryBuilder('user');
+    query.skip((page - 1) * 10);
+
+    try {
+      return await query.getManyAndCount();
+    } catch (error) {
+      throw new InternalServerErrorException('Erro ao listar os arquivos');
     }
   }
 

@@ -1,3 +1,4 @@
+import { FindInvoicesWithPageableDto } from './dto/find-invoices-with-pageable.dto';
 import { ResponseObject } from './../common/types/response-object.type';
 import { Invoice } from '../db/entities/invoice.entity';
 import { InvoiceUploadDto } from './dto/invoice-upload.dto';
@@ -11,6 +12,7 @@ import {
   Param,
   ParseIntPipe,
   Post,
+  Query,
   Res,
   UploadedFile,
   UseInterceptors,
@@ -47,8 +49,19 @@ export class InvoiceController {
 
     return {
       content: invoice,
-      message: 'Usuário encontrado com sucesso',
+      message: 'Arquivo criado com sucesso',
     } as ResponseObject<Invoice>;
+  }
+
+  @Public()
+  @Get()
+  async findUsers(@Query() dto: FindInvoicesWithPageableDto) {
+    const [invoice, count] = await this.invoiceService.findWithPageable(dto);
+    return {
+      content: invoice,
+      message: 'Arquivos encontrados com sucesso',
+      total: count,
+    } as ResponseObject<Invoice[]>;
   }
 
   @Public()
