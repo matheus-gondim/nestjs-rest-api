@@ -1,5 +1,3 @@
-import { jwtConfig } from './../config/jwt.config';
-import { ConfigModule } from '@nestjs/config';
 import { JwtStrategy } from './jwt/jwt-strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
@@ -10,10 +8,12 @@ import { AuthController } from './auth.controller';
 
 @Module({
   imports: [
-    ConfigModule,
     UserModule,
     PassportModule,
-    JwtModule.registerAsync(jwtConfig),
+    JwtModule.register({
+      secret: 'o9qMo0uhNNkeSalS4ZrXc3rvmBA',
+      signOptions: { expiresIn: '3h' },
+    }),
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],

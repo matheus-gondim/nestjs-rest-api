@@ -31,8 +31,8 @@ export class Invoice extends BaseEntity {
   updatedAt: Date;
 
   @Column()
-  delatedAt: Date;
+  deletedAt: Date;
 
   @ManyToOne(() => User, (users) => users.files, { eager: false })
-  users: Promise<User[]>;
+  user: Promise<User>;
 }

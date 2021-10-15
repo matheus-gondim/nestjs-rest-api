@@ -8,7 +8,7 @@ import {
 
 @EntityRepository(Invoice)
 export class InvoiceRepository extends Repository<Invoice> {
-  createInvoice(dto: InvoiceUploadDto): Promise<Invoice> {
+  async createInvoice(dto: InvoiceUploadDto): Promise<Invoice> {
     const { file, isPublic, userId } = dto;
 
     const invoice = this.create({
@@ -19,17 +19,17 @@ export class InvoiceRepository extends Repository<Invoice> {
       createdAt: new Date(),
     });
     try {
-      return this.save(invoice);
+      return await this.save(invoice);
     } catch (error) {
       throw new InternalServerErrorException('Erro ao salvar o arquivo');
     }
   }
 
-  findBy(
+  async findBy(
     findConditions: FindConditions<Invoice>,
   ): Promise<Invoice | undefined> {
     try {
-      return this.findOne({ where: findConditions });
+      return await this.findOne({ where: findConditions });
     } catch (error) {
       throw new InternalServerErrorException('Erro ao buscar o arquivo');
     }
@@ -38,7 +38,7 @@ export class InvoiceRepository extends Repository<Invoice> {
   async findByOrFail(
     findConditions: FindConditions<Invoice>,
   ): Promise<Invoice> {
-    const invoice = this.findBy(findConditions);
+    const invoice = await this.findBy(findConditions);
     if (!invoice) throw new NotFoundException('Arquivo não encontrado');
     return invoice;
   }

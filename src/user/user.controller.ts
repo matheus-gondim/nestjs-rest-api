@@ -1,14 +1,8 @@
+import { CurrentUser } from './decorators/current-user.decorator';
 import { UserResponseDto } from './dto/user-response.dto';
 import { ResponseObject } from './../common/types/response-object.type';
 import { CreateUserDto } from './dto/create-user.dto';
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  ParseIntPipe,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Public } from 'src/auth/decorators/public.decorator';
@@ -31,9 +25,9 @@ export class UserController {
     } as ResponseObject<UserResponseDto>;
   }
 
-  @Get(':id')
-  async findById(
-    @Param('id', ParseIntPipe) id: number,
+  @Get('/current')
+  async findCurrentUser(
+    @CurrentUser() id: number,
   ): Promise<ResponseObject<UserResponseDto>> {
     const user = await this.userService.findById(id);
     return {

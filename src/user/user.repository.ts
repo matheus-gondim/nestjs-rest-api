@@ -8,9 +8,9 @@ import {
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
-  createUser(user: User): Promise<User> {
+  async createUser(user: User): Promise<User> {
     try {
-      return this.save({ ...user, createdAt: new Date() });
+      return await this.save({ ...user, createdAt: new Date() });
     } catch (error) {
       if (error.code.toString() === '23505') {
         throw new ConflictException('Endereço de email já está em uso');
@@ -19,9 +19,9 @@ export class UserRepository extends Repository<User> {
     }
   }
 
-  findBy(findConditions: FindConditions<User>) {
+  async findBy(findConditions: FindConditions<User>) {
     try {
-      return this.findOne({ where: findConditions });
+      return await this.findOne({ where: findConditions });
     } catch (error) {
       throw new InternalServerErrorException('Erro ao buscar usuário');
     }
