@@ -1,4 +1,4 @@
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from './dtos/create-user.dto';
 import { User } from './../db/entities/user.entity';
 import { EncrypterService } from './../encrypter/encrypter.service';
 import { UserRepository } from './user.repository';

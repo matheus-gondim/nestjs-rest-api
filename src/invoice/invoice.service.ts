@@ -1,6 +1,6 @@
-import { FindInvoicesWithPageableDto } from './dto/find-invoices-with-pageable.dto';
+import { FindInvoicesWithPageableDto } from './dtos/find-invoices-with-pageable.dto';
 import { Invoice } from '../db/entities/invoice.entity';
-import { InvoiceUploadDto } from './dto/invoice-upload.dto';
+import { InvoiceUploadDto } from './dtos/invoice-upload.dto';
 import { InvoiceRepository } from './invoice.repository';
 import {
   Injectable,

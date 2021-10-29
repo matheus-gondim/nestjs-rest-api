@@ -37,5 +37,5 @@ export class User extends BaseEntity {
   deletedAt: Date;
 
   @OneToMany(() => Invoice, (files) => files.userId, { eager: false })
-  files: Promise<Invoice>;
+  files: Promise<Invoice[]>;
 }

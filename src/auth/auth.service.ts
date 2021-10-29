@@ -1,4 +1,4 @@
-import { UserResponseDto } from './../user/dto/user-response.dto';
+import { UserResponseDto } from '../user/dtos/user-response.dto';
 import { SignInResponseDto } from './dtos/sign-in-response.dto';
 import { User } from './../db/entities/user.entity';
 import { ResponseObject } from './../common/types/response-object.type';

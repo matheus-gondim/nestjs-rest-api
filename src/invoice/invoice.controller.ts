@@ -1,7 +1,7 @@
-import { FindInvoicesWithPageableDto } from './dto/find-invoices-with-pageable.dto';
+import { FindInvoicesWithPageableDto } from './dtos/find-invoices-with-pageable.dto';
 import { ResponseObject } from './../common/types/response-object.type';
 import { Invoice } from '../db/entities/invoice.entity';
-import { InvoiceUploadDto } from './dto/invoice-upload.dto';
+import { InvoiceUploadDto } from './dtos/invoice-upload.dto';
 import { InvoiceService } from './invoice.service';
 import { CurrentUser } from './../user/decorators/current-user.decorator';
 import { multerConfig } from './../config/multer.config';

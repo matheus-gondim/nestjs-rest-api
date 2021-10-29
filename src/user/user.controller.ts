@@ -1,11 +1,11 @@
 import { CurrentUser } from './decorators/current-user.decorator';
-import { UserResponseDto } from './dto/user-response.dto';
+import { UserResponseDto } from './dtos/user-response.dto';
 import { ResponseObject } from './../common/types/response-object.type';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDto } from './dtos/create-user.dto';
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Public } from 'src/auth/decorators/public.decorator';
+import { Public } from '../auth/decorators/public.decorator';
 
 @Controller('user')
 @ApiTags('Usuários')

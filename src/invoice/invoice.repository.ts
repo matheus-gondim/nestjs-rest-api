@@ -1,5 +1,5 @@
-import { FindInvoicesWithPageableDto } from './dto/find-invoices-with-pageable.dto';
-import { InvoiceUploadDto } from './dto/invoice-upload.dto';
+import { FindInvoicesWithPageableDto } from './dtos/find-invoices-with-pageable.dto';
+import { InvoiceUploadDto } from './dtos/invoice-upload.dto';
 import { Invoice } from '../db/entities/invoice.entity';
 import { EntityRepository, FindConditions, Repository } from 'typeorm';
 import {
